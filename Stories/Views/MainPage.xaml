@@ -1,7 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Stories" x:Class="Stories.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Stories.Views" 
+             xmlns:viewmodel="clr-namespace:Stories.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="Stories.Views.MainPage"
+             Title="{Binding Title}"
+             ios:Page.UseSafeArea="true">
+    
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowSpacing="0" ColumnSpacing="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <ListView ItemsSource="{Binding Stories}"
+                  CachingStrategy="RecycleElement"
+                  ItemSelected="Handle_ItemSelected"
+                  HasUnevenRows="true"
+                  Grid.ColumnSpan="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImageUrl}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   WidthRequest="100"
+                                   HeightRequest="60"
+                                   Aspect="AspectFill"/>
+                            <StackLayout Grid.Column="1"
+                                         VerticalOptions="Center">
+                                <Label Text="{Binding Title}" />
+                                <Label Text="{Binding Author}" />
+                            </StackLayout>
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                   IsRunning="{Binding IsBusy}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="2"/>
+    </Grid>
 </ContentPage>
