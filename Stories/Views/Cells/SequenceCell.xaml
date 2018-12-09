@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+          xmlns:local="clr-namespace:Stories.CustomRenderers"
+          x:Class="Stories.Views.Cells.SequenceCell">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.Column="1"
+                     VerticalOptions="Center">
+            <Label Text="{Binding Narrator}" />
+            <Label Text="{Binding Line}" />
+        </StackLayout>
+    </Grid>
+</ViewCell>

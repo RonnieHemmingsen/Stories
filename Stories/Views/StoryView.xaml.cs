@@ -17,6 +17,7 @@ namespace Stories.Views
         {
             InitializeComponent();
             ((StoryViewModel)BindingContext).Story = story;
+            ((StoryViewModel)BindingContext).Sequences = story.Pages[0].Sequences;
         }
     }
 }

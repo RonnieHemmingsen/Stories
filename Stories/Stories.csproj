@@ -19,5 +19,10 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
     <Folder Include="Views\" />
+    <Folder Include="Views\Cells\" />
+    <Folder Include="CustomRenderers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\Cells\SqeunceCell.xaml.cs" />
   </ItemGroup>
 </Project>

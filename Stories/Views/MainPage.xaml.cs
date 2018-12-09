@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Stories.Views
             if (!(e.SelectedItem is Story story)) {
                 return;
             }
-
+            Debug.WriteLine(story);
             await Navigation.PushAsync(new StoryView(story));
             ((ListView)sender).SelectedItem = null;
         }
